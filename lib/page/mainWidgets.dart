@@ -3,7 +3,7 @@ import 'package:pongdang/fnc/hanAPI.dart';
 import 'package:pongdang/fnc/dateTimeParser.dart';
 
 class MainWidgets {
-  Widget mainWidgets(BuildContext context, Size screenSize, Pong pong) {
+  Widget mainWidgets(BuildContext context, Size screenSize, Pong pong, Function onTap) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -12,6 +12,8 @@ class MainWidgets {
           child: Text(
             "퐁당",
             style: TextStyle(
+              fontFamily: 'Han',
+              fontWeight: FontWeight.w600,
               fontSize: 32,
               color: Colors.white,
             ),
@@ -22,12 +24,16 @@ class MainWidgets {
           child: Divider(thickness: 2,color: Colors.white38,),
         ),
         Container(
-          child: Text(
-            "${pong.temp != null ? pong.temp+"°C" : "불러오는 중"}",
-            style: TextStyle(
-              fontSize: 64,
-              color: Colors.white
+          child: InkWell(
+            child: Text(
+              "${pong.temp != null ? pong.temp+"°C" : "불러오는 중"}",
+              style: TextStyle(
+                  fontSize: 64,
+                  fontWeight: FontWeight.w200,
+                  color: Colors.white
+              ),
             ),
+            onTap: onTap,
           ),
         ),
         Container(
@@ -39,6 +45,7 @@ class MainWidgets {
             "측정한 시간",
             style: TextStyle(
               fontSize: 16,
+              fontWeight: FontWeight.w300,
               color: Colors.white,
             ),
           ),
@@ -48,6 +55,7 @@ class MainWidgets {
             "${pong.time != null ? DateTimeParser().defaultParse(pong.time): "불러오는 중"}",
             style: TextStyle(
               fontSize: 18,
+              fontWeight: FontWeight.w300,
               color: Colors.white,
             ),
           ),

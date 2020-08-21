@@ -45,7 +45,10 @@ class HomeState extends State<Home> {
               color: Colors.black.withOpacity(0.3),
             ),
           ),
-          MainWidgets().mainWidgets(context, screenSize, pong),
+          MainWidgets().mainWidgets(context, screenSize, pong, () {
+            // 온도 눌렀을때 기능
+            print("퐁당");
+          }),
         ],
       ),
     );

@@ -47,6 +47,18 @@ flutter:
   uses-material-design: true
   assets:
     - assets/background.png
+
+  fonts:
+    - family: Han
+      fonts:
+        - asset: assets/fonts/SeoulHangangL.ttf
+          weight: 300
+        - asset: assets/fonts/SeoulHangangM.ttf
+          weight: 500
+        - asset: assets/fonts/SeoulHangangB.ttf
+          weight: 700
+        - asset: assets/fonts/SeoulHangangEB.ttf
+          weight: 800
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
