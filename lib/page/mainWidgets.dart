@@ -26,7 +26,7 @@ class MainWidgets {
         Container(
           child: InkWell(
             child: Text(
-              "${pong.temp != null ? pong.temp+"°C" : "불러오는 중"}",
+              "${pong.temp != null ? pong.temp+"°C" : "00.0°C"}",
               style: TextStyle(
                   fontSize: 64,
                   fontWeight: FontWeight.w200,

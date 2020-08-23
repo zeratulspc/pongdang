@@ -20,7 +20,6 @@ class HomeState extends State<Home> {
     hanAPI.fetchData().then((data){
       setState(() {
         pong = data;
-        print(pong.time);
       });
     });
   }
@@ -42,7 +41,15 @@ class HomeState extends State<Home> {
               sigmaY: 5,
             ),
             child: Container(
-              color: Colors.black.withOpacity(0.3),
+              width: screenSize.width,
+              height: screenSize.height,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.indigo.withOpacity(0.5), Colors.blue.withOpacity(0.5)]
+                ),
+              ),
             ),
           ),
           MainWidgets().mainWidgets(context, screenSize, pong, () {
