@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pongdang/fnc/hanAPI.dart';
 import 'package:pongdang/page/mainWidgets.dart';
+import 'package:pongdang/page/backgroundWidgets.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,6 +14,25 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   HanAPI hanAPI = HanAPI();
   Pong pong = Pong();
+
+  //UI
+  List<Color> colorList = [
+    Colors.red.withOpacity(0.3),
+    Colors.blue.withOpacity(0.3),
+    Colors.green.withOpacity(0.3),
+    Colors.yellow.withOpacity(0.3),
+  ];
+  List<Alignment> alignmentList = [
+    Alignment.bottomLeft,
+    Alignment.bottomRight,
+    Alignment.topRight,
+    Alignment.topLeft,
+  ];
+  int index = 0;
+  Color bottomColor = Colors.indigo.withOpacity(0.3);
+  Color topColor = Colors.purple.withOpacity(0.3);
+  Alignment begin = Alignment.bottomLeft;
+  Alignment end = Alignment.topRight;
 
   @override
   void initState() {
@@ -26,6 +46,7 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
@@ -40,15 +61,21 @@ class HomeState extends State<Home> {
               sigmaX: 5,
               sigmaY: 5,
             ),
-            child: Container(
-              width: screenSize.width,
-              height: screenSize.height,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 1),
+              onEnd: () {
+                setState(() {
+                  index = index + 1;
+                  bottomColor = colorList[index % colorList.length];
+                  topColor = colorList[(index + 1) % colorList.length];
+
+                  begin = alignmentList[index % alignmentList.length];
+                  end = alignmentList[(index + 2) % alignmentList.length];
+                });
+              },
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.indigo.withOpacity(0.5), Colors.blue.withOpacity(0.5)]
-                ),
+                  gradient: LinearGradient(
+                      begin: begin, end: end, colors: [bottomColor, topColor])
               ),
             ),
           ),
