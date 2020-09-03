@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:pongdang/fnc/hanAPI.dart';
 import 'package:pongdang/page/mainWidgets.dart';
 import 'package:pongdang/page/backgroundWidgets.dart';
@@ -31,7 +33,7 @@ class HomeState extends State<Home> {
     Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
-        children: <Widget>[
+        children: <Widget> [
           Image.asset(
           "assets/background.png",
           height: screenSize.height,
@@ -50,9 +52,8 @@ class HomeState extends State<Home> {
               ),
             ),
           ),
-          MainWidgets().mainWidgets(context, screenSize, pong, () {
-            // 온도 눌렀을때 기능
-            print("퐁당");
+          MainWidgets().mainWidgets(context, screenSize, pong, () async {
+            await launch("http://www.spckorea.or.kr/");
           }),
         ],
       ),
